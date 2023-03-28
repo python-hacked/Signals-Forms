@@ -1,0 +1,15 @@
+{% for model in models %}
+    <div>
+        <h2>{{ model.name }}</h2>
+        <p>{{ model.description }}</p>
+        <a href="{% url 'update' model.id %}">Edit</a>
+        <form method="post" action="{% url 'delete' model.id %}">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+{% empty %}
+    <p>No models found.</p>
+{% endfor %}
+
+<a href="/create/">Create a new model</a>
